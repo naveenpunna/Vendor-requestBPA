@@ -1,0 +1,3735 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Service for namespace VendorReqService",
+    "description": "This service is located at [/odata/v4/vendor-req/](/odata/v4/vendor-req/)",
+    "version": ""
+  },
+  "x-sap-api-type": "ODATAV4",
+  "x-odata-version": "4.01",
+  "x-sap-shortText": "Service for namespace VendorReqService",
+  "servers": [
+    {
+      "url": "/odata/v4/vendor-req"
+    }
+  ],
+  "tags": [
+    {
+      "name": "AccountsPayableHistory"
+    },
+    {
+      "name": "ASMSecurityHistory"
+    },
+    {
+      "name": "LegalforMSAHistory"
+    },
+    {
+      "name": "TreasurerHistory"
+    },
+    {
+      "name": "VendorRequestDetails"
+    },
+    {
+      "name": "VPorControllerHistory"
+    }
+  ],
+  "paths": {
+    "/$batch": {
+      "post": {
+        "summary": "Sends a group of requests",
+        "description": "Group multiple requests into a single request payload, see [Batch Requests](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_BatchRequests).\n\n*Please note that \"Try it out\" is not supported for this request.*",
+        "tags": [
+          "Batch Requests"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Batch request",
+          "content": {
+            "multipart/mixed;boundary=request-separator": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "--request-separator\nContent-Type: application/http\nContent-Transfer-Encoding: binary\n\nGET VendorRequestDetails HTTP/1.1\nAccept: application/json\n\n\n--request-separator--"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Batch response",
+            "content": {
+              "multipart/mixed": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "--response-separator\nContent-Type: application/http\n\nHTTP/1.1 200 OK\nContent-Type: application/json\n\n{...}\n--response-separator--"
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/ASMSecurityHistory": {
+      "get": {
+        "summary": "Retrieves a list of a s m security history.",
+        "tags": [
+          "ASMSecurityHistory"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "name": "$filter",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "RequestNumber",
+                  "RequestNumber desc",
+                  "ItemNo",
+                  "ItemNo desc",
+                  "ASMSecurityStatus",
+                  "ASMSecurityStatus desc",
+                  "ASMSecurityRejectionComments",
+                  "ASMSecurityRejectionComments desc",
+                  "ASMSecurityAssignedDateTime",
+                  "ASMSecurityAssignedDateTime desc",
+                  "ASMSecurityActionDateTime",
+                  "ASMSecurityActionDateTime desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "RequestNumber",
+                  "ItemNo",
+                  "ASMSecurityStatus",
+                  "ASMSecurityRejectionComments",
+                  "ASMSecurityAssignedDateTime",
+                  "ASMSecurityActionDateTime"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved a s m security history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Collection of ASMSecurityHistory",
+                  "properties": {
+                    "@count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/VendorReqService.ASMSecurityHistory"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a single a s m security history.",
+        "tags": [
+          "ASMSecurityHistory"
+        ],
+        "requestBody": {
+          "description": "New a s m security history",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VendorReqService.ASMSecurityHistory-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created a s m security history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorReqService.ASMSecurityHistory"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/ASMSecurityHistory(RequestNumber={RequestNumber},ItemNo={ItemNo})": {
+      "parameters": [
+        {
+          "description": "key: RequestNumber",
+          "in": "path",
+          "name": "RequestNumber",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        {
+          "description": "key: ItemNo",
+          "in": "path",
+          "name": "ItemNo",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieves a single a s m security history.",
+        "tags": [
+          "ASMSecurityHistory"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "RequestNumber",
+                  "ItemNo",
+                  "ASMSecurityStatus",
+                  "ASMSecurityRejectionComments",
+                  "ASMSecurityAssignedDateTime",
+                  "ASMSecurityActionDateTime"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved a s m security history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorReqService.ASMSecurityHistory"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Changes a single a s m security history.",
+        "tags": [
+          "ASMSecurityHistory"
+        ],
+        "requestBody": {
+          "description": "New property values",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VendorReqService.ASMSecurityHistory-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a single a s m security history.",
+        "tags": [
+          "ASMSecurityHistory"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/AccountsPayableHistory": {
+      "get": {
+        "summary": "Retrieves a list of accounts payable history.",
+        "tags": [
+          "AccountsPayableHistory"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "name": "$filter",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "RequestNumber",
+                  "RequestNumber desc",
+                  "ItemNo",
+                  "ItemNo desc",
+                  "AccountsPayableTeamStatus",
+                  "AccountsPayableTeamStatus desc",
+                  "AccountsPayableTeamRejectionComment",
+                  "AccountsPayableTeamRejectionComment desc",
+                  "AccountsPayableTeamAssignedDateTime",
+                  "AccountsPayableTeamAssignedDateTime desc",
+                  "AccountsPayableTeamActionDateTime",
+                  "AccountsPayableTeamActionDateTime desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "RequestNumber",
+                  "ItemNo",
+                  "AccountsPayableTeamStatus",
+                  "AccountsPayableTeamRejectionComment",
+                  "AccountsPayableTeamAssignedDateTime",
+                  "AccountsPayableTeamActionDateTime"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved accounts payable history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Collection of AccountsPayableHistory",
+                  "properties": {
+                    "@count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/VendorReqService.AccountsPayableHistory"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a single accounts payable history.",
+        "tags": [
+          "AccountsPayableHistory"
+        ],
+        "requestBody": {
+          "description": "New accounts payable history",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VendorReqService.AccountsPayableHistory-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created accounts payable history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorReqService.AccountsPayableHistory"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/AccountsPayableHistory(RequestNumber={RequestNumber},ItemNo={ItemNo})": {
+      "parameters": [
+        {
+          "description": "key: RequestNumber",
+          "in": "path",
+          "name": "RequestNumber",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        {
+          "description": "key: ItemNo",
+          "in": "path",
+          "name": "ItemNo",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieves a single accounts payable history.",
+        "tags": [
+          "AccountsPayableHistory"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "RequestNumber",
+                  "ItemNo",
+                  "AccountsPayableTeamStatus",
+                  "AccountsPayableTeamRejectionComment",
+                  "AccountsPayableTeamAssignedDateTime",
+                  "AccountsPayableTeamActionDateTime"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved accounts payable history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorReqService.AccountsPayableHistory"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Changes a single accounts payable history.",
+        "tags": [
+          "AccountsPayableHistory"
+        ],
+        "requestBody": {
+          "description": "New property values",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VendorReqService.AccountsPayableHistory-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a single accounts payable history.",
+        "tags": [
+          "AccountsPayableHistory"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/LegalforMSAHistory": {
+      "get": {
+        "summary": "Retrieves a list of legalfor m s a history.",
+        "tags": [
+          "LegalforMSAHistory"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "name": "$filter",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "RequestNumber",
+                  "RequestNumber desc",
+                  "ItemNo",
+                  "ItemNo desc",
+                  "LegalforMSAStatus",
+                  "LegalforMSAStatus desc",
+                  "LegalforMSARejectionComments",
+                  "LegalforMSARejectionComments desc",
+                  "LegalforMSAAssignedDateTime",
+                  "LegalforMSAAssignedDateTime desc",
+                  "LegalforMSAActionDateTime",
+                  "LegalforMSAActionDateTime desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "RequestNumber",
+                  "ItemNo",
+                  "LegalforMSAStatus",
+                  "LegalforMSARejectionComments",
+                  "LegalforMSAAssignedDateTime",
+                  "LegalforMSAActionDateTime"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved legalfor m s a history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Collection of LegalforMSAHistory",
+                  "properties": {
+                    "@count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/VendorReqService.LegalforMSAHistory"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a single legalfor m s a history.",
+        "tags": [
+          "LegalforMSAHistory"
+        ],
+        "requestBody": {
+          "description": "New legalfor m s a history",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VendorReqService.LegalforMSAHistory-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created legalfor m s a history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorReqService.LegalforMSAHistory"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/LegalforMSAHistory(RequestNumber={RequestNumber},ItemNo={ItemNo})": {
+      "parameters": [
+        {
+          "description": "key: RequestNumber",
+          "in": "path",
+          "name": "RequestNumber",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        {
+          "description": "key: ItemNo",
+          "in": "path",
+          "name": "ItemNo",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieves a single legalfor m s a history.",
+        "tags": [
+          "LegalforMSAHistory"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "RequestNumber",
+                  "ItemNo",
+                  "LegalforMSAStatus",
+                  "LegalforMSARejectionComments",
+                  "LegalforMSAAssignedDateTime",
+                  "LegalforMSAActionDateTime"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved legalfor m s a history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorReqService.LegalforMSAHistory"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Changes a single legalfor m s a history.",
+        "tags": [
+          "LegalforMSAHistory"
+        ],
+        "requestBody": {
+          "description": "New property values",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VendorReqService.LegalforMSAHistory-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a single legalfor m s a history.",
+        "tags": [
+          "LegalforMSAHistory"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/TreasurerHistory": {
+      "get": {
+        "summary": "Retrieves a list of treasurer history.",
+        "tags": [
+          "TreasurerHistory"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "name": "$filter",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "RequestNumber",
+                  "RequestNumber desc",
+                  "ItemNo",
+                  "ItemNo desc",
+                  "TreasurerStatus",
+                  "TreasurerStatus desc",
+                  "TreasurerRejectionComments",
+                  "TreasurerRejectionComments desc",
+                  "TreasurerAssignedDateTime",
+                  "TreasurerAssignedDateTime desc",
+                  "TreasurerActionDateTime",
+                  "TreasurerActionDateTime desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "RequestNumber",
+                  "ItemNo",
+                  "TreasurerStatus",
+                  "TreasurerRejectionComments",
+                  "TreasurerAssignedDateTime",
+                  "TreasurerActionDateTime"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved treasurer history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Collection of TreasurerHistory",
+                  "properties": {
+                    "@count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/VendorReqService.TreasurerHistory"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a single treasurer history.",
+        "tags": [
+          "TreasurerHistory"
+        ],
+        "requestBody": {
+          "description": "New treasurer history",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VendorReqService.TreasurerHistory-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created treasurer history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorReqService.TreasurerHistory"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/TreasurerHistory(RequestNumber={RequestNumber},ItemNo={ItemNo})": {
+      "parameters": [
+        {
+          "description": "key: RequestNumber",
+          "in": "path",
+          "name": "RequestNumber",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        {
+          "description": "key: ItemNo",
+          "in": "path",
+          "name": "ItemNo",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieves a single treasurer history.",
+        "tags": [
+          "TreasurerHistory"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "RequestNumber",
+                  "ItemNo",
+                  "TreasurerStatus",
+                  "TreasurerRejectionComments",
+                  "TreasurerAssignedDateTime",
+                  "TreasurerActionDateTime"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved treasurer history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorReqService.TreasurerHistory"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Changes a single treasurer history.",
+        "tags": [
+          "TreasurerHistory"
+        ],
+        "requestBody": {
+          "description": "New property values",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VendorReqService.TreasurerHistory-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a single treasurer history.",
+        "tags": [
+          "TreasurerHistory"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/VPorControllerHistory": {
+      "get": {
+        "summary": "Retrieves a list of v por controller history.",
+        "tags": [
+          "VPorControllerHistory"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "name": "$filter",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "RequestNumber",
+                  "RequestNumber desc",
+                  "ItemNo",
+                  "ItemNo desc",
+                  "VPorControllerStatus",
+                  "VPorControllerStatus desc",
+                  "VPorControllerRejectionComments",
+                  "VPorControllerRejectionComments desc",
+                  "VPorControllerAssignedDateTime",
+                  "VPorControllerAssignedDateTime desc",
+                  "VPorControllerActionDateTime",
+                  "VPorControllerActionDateTime desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "RequestNumber",
+                  "ItemNo",
+                  "VPorControllerStatus",
+                  "VPorControllerRejectionComments",
+                  "VPorControllerAssignedDateTime",
+                  "VPorControllerActionDateTime"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved v por controller history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Collection of VPorControllerHistory",
+                  "properties": {
+                    "@count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/VendorReqService.VPorControllerHistory"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a single v por controller history.",
+        "tags": [
+          "VPorControllerHistory"
+        ],
+        "requestBody": {
+          "description": "New v por controller history",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VendorReqService.VPorControllerHistory-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created v por controller history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorReqService.VPorControllerHistory"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/VPorControllerHistory(RequestNumber={RequestNumber},ItemNo={ItemNo})": {
+      "parameters": [
+        {
+          "description": "key: RequestNumber",
+          "in": "path",
+          "name": "RequestNumber",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        {
+          "description": "key: ItemNo",
+          "in": "path",
+          "name": "ItemNo",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieves a single v por controller history.",
+        "tags": [
+          "VPorControllerHistory"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "RequestNumber",
+                  "ItemNo",
+                  "VPorControllerStatus",
+                  "VPorControllerRejectionComments",
+                  "VPorControllerAssignedDateTime",
+                  "VPorControllerActionDateTime"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved v por controller history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorReqService.VPorControllerHistory"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Changes a single v por controller history.",
+        "tags": [
+          "VPorControllerHistory"
+        ],
+        "requestBody": {
+          "description": "New property values",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VendorReqService.VPorControllerHistory-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a single v por controller history.",
+        "tags": [
+          "VPorControllerHistory"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/VendorRequestDetails": {
+      "get": {
+        "summary": "Retrieves a list of vendor request details.",
+        "tags": [
+          "VendorRequestDetails"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "name": "$filter",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "ID desc",
+                  "createdAt",
+                  "createdAt desc",
+                  "createdBy",
+                  "createdBy desc",
+                  "modifiedAt",
+                  "modifiedAt desc",
+                  "modifiedBy",
+                  "modifiedBy desc",
+                  "RequestNumber",
+                  "RequestNumber desc",
+                  "VendorNumber",
+                  "VendorNumber desc",
+                  "VendorName",
+                  "VendorName desc",
+                  "Currency",
+                  "Currency desc",
+                  "Country",
+                  "Country desc",
+                  "CompanyCode",
+                  "CompanyCode desc",
+                  "PurchaseOrganization",
+                  "PurchaseOrganization desc",
+                  "AccountGroup",
+                  "AccountGroup desc",
+                  "VendorTierType",
+                  "VendorTierType desc",
+                  "FieldManagerName",
+                  "FieldManagerName desc",
+                  "FieldManagerStatus",
+                  "FieldManagerStatus desc",
+                  "FieldManagerSubmittedDateTime",
+                  "FieldManagerSubmittedDateTime desc",
+                  "TreasurerName",
+                  "TreasurerName desc",
+                  "TreasurerStatus",
+                  "TreasurerStatus desc",
+                  "TreasurerRejectionComments",
+                  "TreasurerRejectionComments desc",
+                  "TreasurerAssignedDateTime",
+                  "TreasurerAssignedDateTime desc",
+                  "TreasurerActionDateTime",
+                  "TreasurerActionDateTime desc",
+                  "AccountsPayableTeam",
+                  "AccountsPayableTeam desc",
+                  "AccountsPayableTeamStatus",
+                  "AccountsPayableTeamStatus desc",
+                  "AccountsPayableTeamRejectionComment",
+                  "AccountsPayableTeamRejectionComment desc",
+                  "AccountsPayableTeamAssignedDateTime",
+                  "AccountsPayableTeamAssignedDateTime desc",
+                  "AccountsPayableTeamActionDateTime",
+                  "AccountsPayableTeamActionDateTime desc",
+                  "VPorControllerName",
+                  "VPorControllerName desc",
+                  "VPorControllerStatus",
+                  "VPorControllerStatus desc",
+                  "VPorControllerRejectionComments",
+                  "VPorControllerRejectionComments desc",
+                  "VPorControllerAssignedDateTime",
+                  "VPorControllerAssignedDateTime desc",
+                  "VPorControllerActionDateTime",
+                  "VPorControllerActionDateTime desc",
+                  "ASMSecurityName",
+                  "ASMSecurityName desc",
+                  "ASMSecurityStatus",
+                  "ASMSecurityStatus desc",
+                  "ASMSecurityRejectionComments",
+                  "ASMSecurityRejectionComments desc",
+                  "ASMSecurityAssignedDateTime",
+                  "ASMSecurityAssignedDateTime desc",
+                  "ASMSecurityActionDateTime",
+                  "ASMSecurityActionDateTime desc",
+                  "FreeUseTreasuryName",
+                  "FreeUseTreasuryName desc",
+                  "FreeUseTreasuryStatus",
+                  "FreeUseTreasuryStatus desc",
+                  "FreeUseTreasuryRejectionComments",
+                  "FreeUseTreasuryRejectionComments desc",
+                  "FreeUseTreasuryAssignedDateTime",
+                  "FreeUseTreasuryAssignedDateTime desc",
+                  "FreeUseTreasuryActionDateTime",
+                  "FreeUseTreasuryActionDateTime desc",
+                  "LegalforMSAName",
+                  "LegalforMSAName desc",
+                  "LegalforMSAStatus",
+                  "LegalforMSAStatus desc",
+                  "LegalforMSARejectionComments",
+                  "LegalforMSARejectionComments desc",
+                  "LegalforMSAAssignedDateTime",
+                  "LegalforMSAAssignedDateTime desc",
+                  "LegalforMSAActionDateTime",
+                  "LegalforMSAActionDateTime desc",
+                  "RequestStatus",
+                  "RequestStatus desc",
+                  "accountsPayableHistory_RequestNumber",
+                  "accountsPayableHistory_RequestNumber desc",
+                  "accountsPayableHistory_ItemNo",
+                  "accountsPayableHistory_ItemNo desc",
+                  "vPorControllerHistory_RequestNumber",
+                  "vPorControllerHistory_RequestNumber desc",
+                  "vPorControllerHistory_ItemNo",
+                  "vPorControllerHistory_ItemNo desc",
+                  "aSMSecurityHistory_RequestNumber",
+                  "aSMSecurityHistory_RequestNumber desc",
+                  "aSMSecurityHistory_ItemNo",
+                  "aSMSecurityHistory_ItemNo desc",
+                  "treasurerHistory_RequestNumber",
+                  "treasurerHistory_RequestNumber desc",
+                  "treasurerHistory_ItemNo",
+                  "treasurerHistory_ItemNo desc",
+                  "legamforMSAHistory_RequestNumber",
+                  "legamforMSAHistory_RequestNumber desc",
+                  "legamforMSAHistory_ItemNo",
+                  "legamforMSAHistory_ItemNo desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "createdAt",
+                  "createdBy",
+                  "modifiedAt",
+                  "modifiedBy",
+                  "RequestNumber",
+                  "VendorNumber",
+                  "VendorName",
+                  "Currency",
+                  "Country",
+                  "CompanyCode",
+                  "PurchaseOrganization",
+                  "AccountGroup",
+                  "VendorTierType",
+                  "FieldManagerName",
+                  "FieldManagerStatus",
+                  "FieldManagerSubmittedDateTime",
+                  "TreasurerName",
+                  "TreasurerStatus",
+                  "TreasurerRejectionComments",
+                  "TreasurerAssignedDateTime",
+                  "TreasurerActionDateTime",
+                  "AccountsPayableTeam",
+                  "AccountsPayableTeamStatus",
+                  "AccountsPayableTeamRejectionComment",
+                  "AccountsPayableTeamAssignedDateTime",
+                  "AccountsPayableTeamActionDateTime",
+                  "VPorControllerName",
+                  "VPorControllerStatus",
+                  "VPorControllerRejectionComments",
+                  "VPorControllerAssignedDateTime",
+                  "VPorControllerActionDateTime",
+                  "ASMSecurityName",
+                  "ASMSecurityStatus",
+                  "ASMSecurityRejectionComments",
+                  "ASMSecurityAssignedDateTime",
+                  "ASMSecurityActionDateTime",
+                  "FreeUseTreasuryName",
+                  "FreeUseTreasuryStatus",
+                  "FreeUseTreasuryRejectionComments",
+                  "FreeUseTreasuryAssignedDateTime",
+                  "FreeUseTreasuryActionDateTime",
+                  "LegalforMSAName",
+                  "LegalforMSAStatus",
+                  "LegalforMSARejectionComments",
+                  "LegalforMSAAssignedDateTime",
+                  "LegalforMSAActionDateTime",
+                  "RequestStatus",
+                  "accountsPayableHistory_RequestNumber",
+                  "accountsPayableHistory_ItemNo",
+                  "vPorControllerHistory_RequestNumber",
+                  "vPorControllerHistory_ItemNo",
+                  "aSMSecurityHistory_RequestNumber",
+                  "aSMSecurityHistory_ItemNo",
+                  "treasurerHistory_RequestNumber",
+                  "treasurerHistory_ItemNo",
+                  "legamforMSAHistory_RequestNumber",
+                  "legamforMSAHistory_ItemNo"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "accountsPayableHistory",
+                  "vPorControllerHistory",
+                  "aSMSecurityHistory",
+                  "treasurerHistory",
+                  "legamforMSAHistory"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved vendor request details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Collection of VendorRequestDetails",
+                  "properties": {
+                    "@count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/VendorReqService.VendorRequestDetails"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a single vendor request detail.",
+        "tags": [
+          "VendorRequestDetails"
+        ],
+        "requestBody": {
+          "description": "New vendor request detail",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VendorReqService.VendorRequestDetails-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created vendor request detail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorReqService.VendorRequestDetails"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/VendorRequestDetails(ID={ID},RequestNumber={RequestNumber})": {
+      "parameters": [
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "description": "key: RequestNumber",
+          "in": "path",
+          "name": "RequestNumber",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieves a single vendor request detail.",
+        "tags": [
+          "VendorRequestDetails"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "createdAt",
+                  "createdBy",
+                  "modifiedAt",
+                  "modifiedBy",
+                  "RequestNumber",
+                  "VendorNumber",
+                  "VendorName",
+                  "Currency",
+                  "Country",
+                  "CompanyCode",
+                  "PurchaseOrganization",
+                  "AccountGroup",
+                  "VendorTierType",
+                  "FieldManagerName",
+                  "FieldManagerStatus",
+                  "FieldManagerSubmittedDateTime",
+                  "TreasurerName",
+                  "TreasurerStatus",
+                  "TreasurerRejectionComments",
+                  "TreasurerAssignedDateTime",
+                  "TreasurerActionDateTime",
+                  "AccountsPayableTeam",
+                  "AccountsPayableTeamStatus",
+                  "AccountsPayableTeamRejectionComment",
+                  "AccountsPayableTeamAssignedDateTime",
+                  "AccountsPayableTeamActionDateTime",
+                  "VPorControllerName",
+                  "VPorControllerStatus",
+                  "VPorControllerRejectionComments",
+                  "VPorControllerAssignedDateTime",
+                  "VPorControllerActionDateTime",
+                  "ASMSecurityName",
+                  "ASMSecurityStatus",
+                  "ASMSecurityRejectionComments",
+                  "ASMSecurityAssignedDateTime",
+                  "ASMSecurityActionDateTime",
+                  "FreeUseTreasuryName",
+                  "FreeUseTreasuryStatus",
+                  "FreeUseTreasuryRejectionComments",
+                  "FreeUseTreasuryAssignedDateTime",
+                  "FreeUseTreasuryActionDateTime",
+                  "LegalforMSAName",
+                  "LegalforMSAStatus",
+                  "LegalforMSARejectionComments",
+                  "LegalforMSAAssignedDateTime",
+                  "LegalforMSAActionDateTime",
+                  "RequestStatus",
+                  "accountsPayableHistory_RequestNumber",
+                  "accountsPayableHistory_ItemNo",
+                  "vPorControllerHistory_RequestNumber",
+                  "vPorControllerHistory_ItemNo",
+                  "aSMSecurityHistory_RequestNumber",
+                  "aSMSecurityHistory_ItemNo",
+                  "treasurerHistory_RequestNumber",
+                  "treasurerHistory_ItemNo",
+                  "legamforMSAHistory_RequestNumber",
+                  "legamforMSAHistory_ItemNo"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "accountsPayableHistory",
+                  "vPorControllerHistory",
+                  "aSMSecurityHistory",
+                  "treasurerHistory",
+                  "legamforMSAHistory"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved vendor request detail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorReqService.VendorRequestDetails"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Changes a single vendor request detail.",
+        "tags": [
+          "VendorRequestDetails"
+        ],
+        "requestBody": {
+          "description": "New property values",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VendorReqService.VendorRequestDetails-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a single vendor request detail.",
+        "tags": [
+          "VendorRequestDetails"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/VendorRequestDetails(ID={ID},RequestNumber={RequestNumber})/aSMSecurityHistory": {
+      "parameters": [
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "description": "key: RequestNumber",
+          "in": "path",
+          "name": "RequestNumber",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieves a s m security history of a vendor request detail.",
+        "tags": [
+          "VendorRequestDetails",
+          "ASMSecurityHistory"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "RequestNumber",
+                  "ItemNo",
+                  "ASMSecurityStatus",
+                  "ASMSecurityRejectionComments",
+                  "ASMSecurityAssignedDateTime",
+                  "ASMSecurityActionDateTime"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved a s m security history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorReqService.ASMSecurityHistory"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/VendorRequestDetails(ID={ID},RequestNumber={RequestNumber})/accountsPayableHistory": {
+      "parameters": [
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "description": "key: RequestNumber",
+          "in": "path",
+          "name": "RequestNumber",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieves accounts payable history of a vendor request detail.",
+        "tags": [
+          "VendorRequestDetails",
+          "AccountsPayableHistory"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "RequestNumber",
+                  "ItemNo",
+                  "AccountsPayableTeamStatus",
+                  "AccountsPayableTeamRejectionComment",
+                  "AccountsPayableTeamAssignedDateTime",
+                  "AccountsPayableTeamActionDateTime"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved accounts payable history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorReqService.AccountsPayableHistory"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/VendorRequestDetails(ID={ID},RequestNumber={RequestNumber})/legamforMSAHistory": {
+      "parameters": [
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "description": "key: RequestNumber",
+          "in": "path",
+          "name": "RequestNumber",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieves legamfor m s a history of a vendor request detail.",
+        "tags": [
+          "VendorRequestDetails",
+          "LegalforMSAHistory"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "RequestNumber",
+                  "ItemNo",
+                  "LegalforMSAStatus",
+                  "LegalforMSARejectionComments",
+                  "LegalforMSAAssignedDateTime",
+                  "LegalforMSAActionDateTime"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved legamfor m s a history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorReqService.LegalforMSAHistory"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/VendorRequestDetails(ID={ID},RequestNumber={RequestNumber})/treasurerHistory": {
+      "parameters": [
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "description": "key: RequestNumber",
+          "in": "path",
+          "name": "RequestNumber",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieves treasurer history of a vendor request detail.",
+        "tags": [
+          "VendorRequestDetails",
+          "TreasurerHistory"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "RequestNumber",
+                  "ItemNo",
+                  "TreasurerStatus",
+                  "TreasurerRejectionComments",
+                  "TreasurerAssignedDateTime",
+                  "TreasurerActionDateTime"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved treasurer history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorReqService.TreasurerHistory"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/VendorRequestDetails(ID={ID},RequestNumber={RequestNumber})/vPorControllerHistory": {
+      "parameters": [
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "description": "key: RequestNumber",
+          "in": "path",
+          "name": "RequestNumber",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieves v por controller history of a vendor request detail.",
+        "tags": [
+          "VendorRequestDetails",
+          "VPorControllerHistory"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "RequestNumber",
+                  "ItemNo",
+                  "VPorControllerStatus",
+                  "VPorControllerRejectionComments",
+                  "VPorControllerAssignedDateTime",
+                  "VPorControllerActionDateTime"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved v por controller history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorReqService.VPorControllerHistory"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "VendorReqService.ASMSecurityHistory": {
+        "title": "ASMSecurityHistory",
+        "type": "object",
+        "properties": {
+          "RequestNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ItemNo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ASMSecurityStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "ASMSecurityRejectionComments": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "ASMSecurityAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "ASMSecurityActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          }
+        }
+      },
+      "VendorReqService.ASMSecurityHistory-create": {
+        "title": "ASMSecurityHistory (for create)",
+        "type": "object",
+        "properties": {
+          "RequestNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ItemNo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ASMSecurityStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "ASMSecurityRejectionComments": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "ASMSecurityAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "ASMSecurityActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          }
+        },
+        "required": [
+          "RequestNumber",
+          "ItemNo"
+        ]
+      },
+      "VendorReqService.ASMSecurityHistory-update": {
+        "title": "ASMSecurityHistory (for update)",
+        "type": "object",
+        "properties": {
+          "ASMSecurityStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "ASMSecurityRejectionComments": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "ASMSecurityAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "ASMSecurityActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          }
+        }
+      },
+      "VendorReqService.AccountsPayableHistory": {
+        "title": "AccountsPayableHistory",
+        "type": "object",
+        "properties": {
+          "RequestNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ItemNo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "AccountsPayableTeamStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "AccountsPayableTeamRejectionComment": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "AccountsPayableTeamAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "AccountsPayableTeamActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          }
+        }
+      },
+      "VendorReqService.AccountsPayableHistory-create": {
+        "title": "AccountsPayableHistory (for create)",
+        "type": "object",
+        "properties": {
+          "RequestNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ItemNo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "AccountsPayableTeamStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "AccountsPayableTeamRejectionComment": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "AccountsPayableTeamAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "AccountsPayableTeamActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          }
+        },
+        "required": [
+          "RequestNumber",
+          "ItemNo"
+        ]
+      },
+      "VendorReqService.AccountsPayableHistory-update": {
+        "title": "AccountsPayableHistory (for update)",
+        "type": "object",
+        "properties": {
+          "AccountsPayableTeamStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "AccountsPayableTeamRejectionComment": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "AccountsPayableTeamAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "AccountsPayableTeamActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          }
+        }
+      },
+      "VendorReqService.LegalforMSAHistory": {
+        "title": "LegalforMSAHistory",
+        "type": "object",
+        "properties": {
+          "RequestNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ItemNo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "LegalforMSAStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "LegalforMSARejectionComments": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "LegalforMSAAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "LegalforMSAActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          }
+        }
+      },
+      "VendorReqService.LegalforMSAHistory-create": {
+        "title": "LegalforMSAHistory (for create)",
+        "type": "object",
+        "properties": {
+          "RequestNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ItemNo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "LegalforMSAStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "LegalforMSARejectionComments": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "LegalforMSAAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "LegalforMSAActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          }
+        },
+        "required": [
+          "RequestNumber",
+          "ItemNo"
+        ]
+      },
+      "VendorReqService.LegalforMSAHistory-update": {
+        "title": "LegalforMSAHistory (for update)",
+        "type": "object",
+        "properties": {
+          "LegalforMSAStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "LegalforMSARejectionComments": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "LegalforMSAAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "LegalforMSAActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          }
+        }
+      },
+      "VendorReqService.TreasurerHistory": {
+        "title": "TreasurerHistory",
+        "type": "object",
+        "properties": {
+          "RequestNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ItemNo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "TreasurerStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "TreasurerRejectionComments": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "TreasurerAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "TreasurerActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          }
+        }
+      },
+      "VendorReqService.TreasurerHistory-create": {
+        "title": "TreasurerHistory (for create)",
+        "type": "object",
+        "properties": {
+          "RequestNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ItemNo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "TreasurerStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "TreasurerRejectionComments": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "TreasurerAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "TreasurerActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          }
+        },
+        "required": [
+          "RequestNumber",
+          "ItemNo"
+        ]
+      },
+      "VendorReqService.TreasurerHistory-update": {
+        "title": "TreasurerHistory (for update)",
+        "type": "object",
+        "properties": {
+          "TreasurerStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "TreasurerRejectionComments": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "TreasurerAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "TreasurerActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          }
+        }
+      },
+      "VendorReqService.VPorControllerHistory": {
+        "title": "VPorControllerHistory",
+        "type": "object",
+        "properties": {
+          "RequestNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ItemNo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "VPorControllerStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "VPorControllerRejectionComments": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "VPorControllerAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "VPorControllerActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          }
+        }
+      },
+      "VendorReqService.VPorControllerHistory-create": {
+        "title": "VPorControllerHistory (for create)",
+        "type": "object",
+        "properties": {
+          "RequestNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ItemNo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "VPorControllerStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "VPorControllerRejectionComments": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "VPorControllerAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "VPorControllerActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          }
+        },
+        "required": [
+          "RequestNumber",
+          "ItemNo"
+        ]
+      },
+      "VendorReqService.VPorControllerHistory-update": {
+        "title": "VPorControllerHistory (for update)",
+        "type": "object",
+        "properties": {
+          "VPorControllerStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "VPorControllerRejectionComments": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "VPorControllerAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "VPorControllerActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          }
+        }
+      },
+      "VendorReqService.VendorRequestDetails": {
+        "title": "VendorRequestDetails",
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04.0000000Z",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04.0000000Z",
+            "nullable": true
+          },
+          "modifiedBy": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true
+          },
+          "RequestNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "VendorNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "VendorName": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "Currency": {
+            "anyOf": [
+              {
+                "type": "number",
+                "format": "decimal",
+                "multipleOf": 0.01,
+                "maximum": 999999.99,
+                "minimum": -999999.99
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": 0,
+            "x-sap-precision": 8,
+            "x-sap-scale": 2,
+            "nullable": true
+          },
+          "Country": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "CompanyCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "PurchaseOrganization": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "AccountGroup": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "VendorTierType": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "FieldManagerName": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "FieldManagerStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "FieldManagerSubmittedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "TreasurerName": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "TreasurerStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "TreasurerRejectionComments": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "TreasurerAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "TreasurerActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "AccountsPayableTeam": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "AccountsPayableTeamStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "AccountsPayableTeamRejectionComment": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "AccountsPayableTeamAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "AccountsPayableTeamActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "VPorControllerName": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "VPorControllerStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "VPorControllerRejectionComments": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "VPorControllerAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "VPorControllerActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "ASMSecurityName": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "ASMSecurityStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "ASMSecurityRejectionComments": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "ASMSecurityAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "ASMSecurityActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "FreeUseTreasuryName": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "FreeUseTreasuryStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "FreeUseTreasuryRejectionComments": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "FreeUseTreasuryAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "FreeUseTreasuryActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "LegalforMSAName": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "LegalforMSAStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "LegalforMSARejectionComments": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "LegalforMSAAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "LegalforMSAActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "RequestStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "accountsPayableHistory": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VendorReqService.AccountsPayableHistory"
+              }
+            ],
+            "nullable": true
+          },
+          "accountsPayableHistory_RequestNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "accountsPayableHistory_ItemNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "vPorControllerHistory": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VendorReqService.VPorControllerHistory"
+              }
+            ],
+            "nullable": true
+          },
+          "vPorControllerHistory_RequestNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "vPorControllerHistory_ItemNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "aSMSecurityHistory": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VendorReqService.ASMSecurityHistory"
+              }
+            ],
+            "nullable": true
+          },
+          "aSMSecurityHistory_RequestNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "aSMSecurityHistory_ItemNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "treasurerHistory": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VendorReqService.TreasurerHistory"
+              }
+            ],
+            "nullable": true
+          },
+          "treasurerHistory_RequestNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "treasurerHistory_ItemNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "legamforMSAHistory": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VendorReqService.LegalforMSAHistory"
+              }
+            ],
+            "nullable": true
+          },
+          "legamforMSAHistory_RequestNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "legamforMSAHistory_ItemNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        }
+      },
+      "VendorReqService.VendorRequestDetails-create": {
+        "title": "VendorRequestDetails (for create)",
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          },
+          "RequestNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "VendorNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "VendorName": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "Currency": {
+            "anyOf": [
+              {
+                "type": "number",
+                "format": "decimal",
+                "multipleOf": 0.01,
+                "maximum": 999999.99,
+                "minimum": -999999.99
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": 0,
+            "x-sap-precision": 8,
+            "x-sap-scale": 2,
+            "nullable": true
+          },
+          "Country": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "CompanyCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "PurchaseOrganization": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "AccountGroup": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "VendorTierType": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "FieldManagerName": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "FieldManagerStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "FieldManagerSubmittedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "TreasurerName": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "TreasurerStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "TreasurerRejectionComments": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "TreasurerAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "TreasurerActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "AccountsPayableTeam": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "AccountsPayableTeamStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "AccountsPayableTeamRejectionComment": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "AccountsPayableTeamAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "AccountsPayableTeamActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "VPorControllerName": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "VPorControllerStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "VPorControllerRejectionComments": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "VPorControllerAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "VPorControllerActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "ASMSecurityName": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "ASMSecurityStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "ASMSecurityRejectionComments": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "ASMSecurityAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "ASMSecurityActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "FreeUseTreasuryName": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "FreeUseTreasuryStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "FreeUseTreasuryRejectionComments": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "FreeUseTreasuryAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "FreeUseTreasuryActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "LegalforMSAName": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "LegalforMSAStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "LegalforMSARejectionComments": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "LegalforMSAAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "LegalforMSAActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "RequestStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "accountsPayableHistory_RequestNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "accountsPayableHistory_ItemNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "vPorControllerHistory_RequestNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "vPorControllerHistory_ItemNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "aSMSecurityHistory_RequestNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "aSMSecurityHistory_ItemNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "treasurerHistory_RequestNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "treasurerHistory_ItemNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "legamforMSAHistory_RequestNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "legamforMSAHistory_ItemNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "required": [
+          "ID",
+          "RequestNumber"
+        ]
+      },
+      "VendorReqService.VendorRequestDetails-update": {
+        "title": "VendorRequestDetails (for update)",
+        "type": "object",
+        "properties": {
+          "VendorNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "VendorName": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "Currency": {
+            "anyOf": [
+              {
+                "type": "number",
+                "format": "decimal",
+                "multipleOf": 0.01,
+                "maximum": 999999.99,
+                "minimum": -999999.99
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": 0,
+            "x-sap-precision": 8,
+            "x-sap-scale": 2,
+            "nullable": true
+          },
+          "Country": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "CompanyCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "PurchaseOrganization": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "AccountGroup": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "VendorTierType": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "FieldManagerName": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "FieldManagerStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "FieldManagerSubmittedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "TreasurerName": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "TreasurerStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "TreasurerRejectionComments": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "TreasurerAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "TreasurerActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "AccountsPayableTeam": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "AccountsPayableTeamStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "AccountsPayableTeamRejectionComment": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "AccountsPayableTeamAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "AccountsPayableTeamActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "VPorControllerName": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "VPorControllerStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "VPorControllerRejectionComments": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "VPorControllerAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "VPorControllerActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "ASMSecurityName": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "ASMSecurityStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "ASMSecurityRejectionComments": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "ASMSecurityAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "ASMSecurityActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "FreeUseTreasuryName": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "FreeUseTreasuryStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "FreeUseTreasuryRejectionComments": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "FreeUseTreasuryAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "FreeUseTreasuryActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "LegalforMSAName": {
+            "type": "string",
+            "maxLength": 100,
+            "nullable": true
+          },
+          "LegalforMSAStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "LegalforMSARejectionComments": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "LegalforMSAAssignedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "LegalforMSAActionDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "RequestStatus": {
+            "type": "string",
+            "maxLength": 1,
+            "nullable": true
+          },
+          "accountsPayableHistory_RequestNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "accountsPayableHistory_ItemNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "vPorControllerHistory_RequestNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "vPorControllerHistory_ItemNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "aSMSecurityHistory_RequestNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "aSMSecurityHistory_ItemNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "treasurerHistory_RequestNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "treasurerHistory_ItemNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "legamforMSAHistory_RequestNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "legamforMSAHistory_ItemNo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        }
+      },
+      "count": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "description": "The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option."
+      },
+      "error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              },
+              "details": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "target": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "innererror": {
+                "type": "object",
+                "description": "The structure of this object is service-specific"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "top": {
+        "name": "$top",
+        "in": "query",
+        "description": "Show only the first n items, see [Paging - Top](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptiontop)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "example": 50
+      },
+      "skip": {
+        "name": "$skip",
+        "in": "query",
+        "description": "Skip the first n items, see [Paging - Skip](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionskip)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "count": {
+        "name": "$count",
+        "in": "query",
+        "description": "Include count of items, see [Count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount)",
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      "search": {
+        "name": "$search",
+        "in": "query",
+        "description": "Search items by search phrases, see [Searching](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionsearch)",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/error"
+            }
+          }
+        }
+      }
+    }
+  }
+}
