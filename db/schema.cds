@@ -1,8 +1,8 @@
 using { cuid,managed,  } from '@sap/cds/common';
 namespace vendorrequestbpa;
-entity VendorRequestDetails : cuid, managed
+entity VendorRequestDetails :  managed
 {
-    key RequestNumber : Integer;
+    key RequestNumber : UUID;
     VendorNumber : Integer;
     VendorName : String;
     Currency : Decimal;
