@@ -1,0 +1,23 @@
+POST http://localhost:4004/odata/v4/vendor-req/VendorRequestDetails
+Content-Type: application/json
+
+{
+"Currency"                 :"UK",
+"Country"                  : "US"
+
+}
+
+### 
+POST   http://localhost:4004/odata/v4/vendor-req/AccountsPayableHistory
+Content-Type: application/json
+
+{
+    "DunningArea":"Test",
+    "vendor":
+    {"RequestNumber":"c1dc73cf-6af9-4994-b2bf-fc874e24532c"}
+}
+###
+GET http://localhost:4004/odata/v4/vendor-req/VendorRequestDetails(54c65f01-c38f-4e74-a456-a04ac74a1884)?$expand=accountsPayableHistory
+
+###
+GET http://localhost:4004/odata/v4/vendor-req/VendorRequestDetails(e8ca5c9c-a760-4c10-8695-bae478d583c3)

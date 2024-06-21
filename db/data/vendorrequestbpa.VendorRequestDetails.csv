@@ -1,0 +1,14 @@
+createdAt,createdBy,modifiedAt,modifiedBy,RequestNumber,VendorNumber,VendorName,Currency,Country,CompanyCode,PurchaseOrganization,AccountGroup,VendorTierType,FieldManagerName,RequestStatus,FieldManagerSubmittedDateTime
+2024-06-07T11:11:46.066Z,system,2024-06-07T11:19:06.385Z,system,b9891256-24cf-4706-9f6b-9272fb51fd11,null,VendorFourFourtyOne,INR,IN,C001,P001,AG001,Free for Payment,akhil.das@mindsetconsulting.com,null,2024-06-07T11:19:06.385Z
+2024-06-10T14:17:23.365Z,system,2024-06-10T14:19:28.416Z,system,cb08c112-aef3-4c55-9963-f6e4b06e3aba,null,VendorOne,INR,IN,C001,P001,AG001,Free for Use,akhil.das@mindsetconsulting.com,MSA Approval Completed,2024-06-10T14:19:28.416Z
+2024-06-10T06:33:49.147Z,system,2024-06-10T06:33:49.147Z,system,cf891670-8eec-486a-95da-1a57abdd3378,null,VendorTenTest,USD,US,CC10,PO10,AG10,null,naveenpunna@mindsetconsulting.com,null,2024-06-10T06:33:49.147Z
+2024-06-10T11:23:20.000Z,system,2024-06-10T11:24:06.945Z,system,dbacab0b-69de-424c-ad38-65d45cb0dfff,null,sdf,sdf,sfd,sdf,sdf,sfd,null,akhil.das@mindsetconsulting.com,null,2024-06-10T11:24:06.945Z
+2024-06-10T16:00:11.210Z,system,2024-06-10T16:29:13.921Z,system,eac9aeef-29fc-421d-90e5-0b950883f6b7,null,VendorOne,INR,IN,C001,P001,AG001,Free for Use,akhil.das@mindsetconsulting.com,Free for Use 1st Level got Approved,2024-06-10T16:29:13.921Z
+2024-06-10T13:11:12.438Z,system,2024-06-10T13:21:36.636Z,system,eb4f078d-8af5-4341-b9d6-e7a8ab116baa,null,VendorOne,INR,IN,C001,PO001,AG001,Free for Payment,akhil.das@mindsetconsulting.com,VP or Controller Approved,2024-06-10T13:21:36.636Z
+2024-06-10T06:13:40.961Z,system,2024-06-10T06:13:40.961Z,system,ece411e3-5751-40c1-84a1-43e1c130f102,null,VendorTen,USD,US,CCq20,PO12,Ag78,null,naveenpunna@mindsetconsulting.com,null,2024-06-10T06:13:40.961Z
+2024-06-10T10:31:02.699Z,system,2024-06-10T10:31:02.699Z,system,f0884867-17bf-45ec-aad3-069656a2be06,null,null,null,null,null,null,null,null,null,null,2024-06-10T10:31:02.699Z
+2024-06-10T10:27:38.338Z,system,2024-06-10T10:27:38.338Z,system,f1aa202b-0f8e-4a9b-b933-7fc23520509b,null,asd,ae,sfd,asd,null,ad,null,null,ads,2024-06-10T08:32:00.890Z
+2024-06-10T08:32:00.890Z,system,2024-06-10T08:32:00.890Z,system,f4fae257-755e-4a93-bed2-019fc89172d3,null,wre,wre,wer,we,null,wer,null,null,null,2024-06-10T08:32:00.890Z
+2024-06-10T10:42:11.096Z,system,2024-06-10T10:42:11.096Z,system,f510225c-7228-4a46-85d7-480bb04d6626,null,null,qd,b,null,null,null,null,null,null,2024-06-10T08:32:00.890Z
+2024-06-10T12:22:53.509Z,system,2024-06-10T12:32:44.102Z,system,f63a2084-9a2a-4328-954d-c3319c4ab4de,null,eq,qew,qwe,qwe,qwe,qe,Free for Payment,akhil.das@mindsetconsulting.com,VP or Controller Approved,2024-06-10T12:32:44.102Z
+2024-06-10T12:14:21.814Z,system,2024-06-10T12:20:22.688Z,system,ffd4f0a0-079c-45c1-969f-830182abec8b,null,VendorTwo,INR,IN,C001,PO001,AG001,Free for Payment,akhil.das@mindsetconsulting.com,Free for Payment 1st Level Approved,2024-06-10T08:32:00.890Z

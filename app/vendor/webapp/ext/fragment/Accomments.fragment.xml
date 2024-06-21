@@ -1,0 +1,5 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:macros="sap.fe.macros">
+  <!--Button text="Accomments" press="handler.onPress"></Button-->
+   <macros:Table core:require="{ handler: 'ivp/vendor/ext/fragment/Accomments'}" id="Table" metaPath="accountsPayableHistory/accountsPayableHistoryComments/@com.sap.vocabularies.UI.v1.LineItem#accomments" selectionMode="None" type="None" variantManagement="None"/>       
+    
+</core:FragmentDefinition>
